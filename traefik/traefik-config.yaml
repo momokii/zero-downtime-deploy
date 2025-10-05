@@ -1,0 +1,26 @@
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+
+log:
+  level: INFO  # Log level (DEBUG, INFO, WARN, ERROR)
+
+api:
+  dashboard: false
+  insecure: true
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false
+    network: traefik-networks 
+  file:
+    # setup the dynamic config file path and enable watch so if the file changed, traefik will auto reload it
+    filename: "/etc/traefik/dynamic-config.yaml"
+    watch: true 

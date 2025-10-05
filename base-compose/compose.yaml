@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    # The image will be specified by the deployment script, e.g., my-registry/my-app:v1.0
+    image: ${APP_IMAGE_TAG}
+    container_name: ${APP_CONTAINER_NAME}
+    restart: unless-stopped
+    labels:
+      # Enable Traefik for this service
+      - "traefik.enable=true"
+      # Define the service backend that the dynamic router will point to
+      - "traefik.http.services.${APP_SERVICE_NAME}.loadbalancer.server.port=${NEW_BINDING_PORT}"
+    networks:
+      # Connect this service to the external Traefik network
+      - traefik-networks
+
+networks:
+  default:
+  traefik-networks:
+    external: true

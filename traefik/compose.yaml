@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  traefik:
+    image: traefik:v3.1.5
+    container_name: traefik-test
+    command:
+      - "--configFile=/etc/traefik/traefik.yaml"
+    ports:
+      - "8080:8080" # The Web UI (enabled by --api.insecure=true)
+      - "80:80"     # The HTTP port
+      - "443:443"   # The HTTPS port
+    volumes:
+      # Mount the Docker socket to let Traefik listen to the Docker events 
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Mount the configuration files
+      - ./traefik-config.yaml:/etc/traefik/traefik.yaml:ro
+      # Mount the dynamic configuration file, if changed, Traefik will auto reload it and you not need to restart the container
+      - ./dynamic-config.yaml:/etc/traefik/dynamic-config.yaml:ro
+    restart: unless-stopped
+    networks:
+      - traefik-networks
+
+networks:
+  default:
+  traefik-networks:
+    external: true
+      
