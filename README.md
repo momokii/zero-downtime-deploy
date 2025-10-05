@@ -2,7 +2,7 @@
 
 This repository provides a robust implementation of zero-downtime deployments using Traefik as a reverse proxy. The setup includes canary deployments, automatic health checks, and failsafe rollback mechanisms.
 
-## 📋 Overview
+## Overview
 
 The system implements a zero-downtime deployment strategy with the following key features:
 
@@ -12,7 +12,7 @@ The system implements a zero-downtime deployment strategy with the following key
 - **Container-Based**: Fully containerized setup using Docker and Docker Compose
 - **Traefik Integration**: Modern reverse proxy handling with dynamic configuration
 
-## 🏗 Project Structure
+## Project Structure
 
 ```
 .
