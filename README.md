@@ -123,7 +123,7 @@ The system includes several failsafe features:
    - Old service preservation until success
    - Clean failure state handling
 
-## 🔍 Monitoring and Debugging
+## Monitoring and Debugging
 
 ### Health Check Points
 
